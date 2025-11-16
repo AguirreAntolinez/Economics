@@ -1,8 +1,8 @@
 # Economics
 This repository contains projects about economics. 
-## Data: 
+## Data
 Datasets with economic information from various sources.
-## Functions: 
+## Functions
 Scripts with functions for loading and transforming data. 
-## Processing: 
+## Processing
 Scripts for processing data.
