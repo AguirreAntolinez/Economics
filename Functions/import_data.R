@@ -43,7 +43,7 @@ import_data <- function(name_list,
         }
       )
       ifelse(
-        is.null(df_year),
+        exists("df_year"),
         yes = data_year[[m]]<-NULL,
         no = data_year[[m]]<-df_year
         )
@@ -53,7 +53,7 @@ import_data <- function(name_list,
     }
     
     ifelse(
-      is.null(data_year),
+      exists("data_year"),
       yes=create_list[[y]]<-NULL,
       create_list[[y]]<-data_year
     )
@@ -66,3 +66,4 @@ import_data <- function(name_list,
   assign(name_list, create_list, envir = .GlobalEnv)
   
 }
+
