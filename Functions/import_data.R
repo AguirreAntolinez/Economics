@@ -42,25 +42,20 @@ import_data <- function(name_list,
           return(NULL)
         }
       )
-      ifelse(
-        exists("df_year"),
-        yes = data_year[[m]]<-NULL,
-        no = data_year[[m]]<-df_year
-        )
-      
-      df_year<-NULL
-      rm(df_year)
-    }
-    
-    ifelse(
-      exists("data_year"),
-      yes=create_list[[y]]<-NULL,
+      if (exists("df_year")){
+        data_year[[m]]<-df_year
+        rm(df_year)
+        } else {
+          data_year[[m]]<-NULL
+          }
+      }
+    if (exists("data_year")){
       create_list[[y]]<-data_year
-    )
-    data_year<-NULL
-    rm(data_year)
-    
-  }
+      rm(data_year)
+    } else {
+      create_list[[y]]<-NULL
+    }
+    }
   
   #Rename de list
   assign(name_list, create_list, envir = .GlobalEnv)
