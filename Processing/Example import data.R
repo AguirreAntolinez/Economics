@@ -34,3 +34,24 @@ import_data(name_list = "migration",
             names_months = name_months,
             root = "Migración.CSV"  )
 
+
+#Import general characteristics data
+import_data(name_list = "characteristics",
+            name_directory = directory,
+            names_years = years,
+            names_months = name_months,
+            root = "Características%20generales.CSV"  )
+
+#Import household data
+import_data(name_list = "household",
+            name_directory = directory,
+            names_years = years,
+            names_months = name_months,
+            root = "Datos%20del%20hogar%20y%20la%20vivienda.CSV"  )
+
+#Import labor data
+import_data(name_list = "labor",
+            name_directory = directory,
+            names_years = years,
+            names_months = name_months,
+            root = "Fuerza%20de%20trabajo.CSV"  )
