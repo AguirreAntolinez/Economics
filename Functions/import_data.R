@@ -1,5 +1,5 @@
 #Import data function
-#Author: William Alexander Aguirre AntolC-nez
+#Author: William Alexander Aguirre Antol??nez
 #Date: 15-11-2025
 
 #Description: This function imports data from this repository.
