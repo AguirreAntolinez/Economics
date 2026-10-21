@@ -1,5 +1,5 @@
 #Import data function
-#Author: William Alexander Aguirre Antolínez
+#Author: William Alexander Aguirre AntolC-nez
 #Date: 15-11-2025
 
 #Description: This function imports data from this repository.
@@ -30,6 +30,7 @@ import_data <- function(name_list,
     data_year<- list()
     #For in months
     for (m in names_months) {
+      df_year<- NULL
       tryCatch(
         df_year <- read_delim(
           paste0(name_directory,y,"/",m,"/",root),
@@ -38,7 +39,7 @@ import_data <- function(name_list,
           trim_ws = TRUE
         ),
         error = function(e) {
-          message(paste("Can´t was imported:", y, m, "->", e$message))
+          message(paste("CanB4t was imported:", y, m, "->", e$message))
           return(NULL)
         }
       )
