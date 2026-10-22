@@ -21,45 +21,34 @@ import_data <- function(name_list,
                         names_years,
                         names_months,
                         root) {
-  
-  #Create the list 
-  create_list<-list()
-  
-  #For in years
+  create_list <- list()
+  missing_months <- character()
+
   for (y in names_years) {
-    data_year<- list()
-    #For in months
+    data_year <- list()
     for (m in names_months) {
-      df_year<- NULL
-      tryCatch(
-        df_year <- read_delim(
-          paste0(name_directory,y,"/",m,"/",root),
+      df_year <- tryCatch(
+        read_delim(
+          paste0(name_directory, y, "/", m, "/", root),
           delim = ";",
           escape_double = FALSE,
-          trim_ws = TRUE
+          trim_ws = TRUE,
+          show_col_types = FALSE
         ),
-        error = function(e) {
-          message(paste("CanB4t was imported:", y, m, "->", e$message))
-          return(NULL)
-        }
+        error = function(e) NULL
       )
-      if (exists("df_year")){
-        data_year[[m]]<-df_year
-        rm(df_year)
-        } else {
-          data_year[[m]]<-NULL
-          }
+      if (is.null(df_year)) {
+        missing_months <- c(missing_months, paste(y, m))
+      } else {
+        data_year[[m]] <- df_year
       }
-    if (exists("data_year")){
-      create_list[[y]]<-data_year
-      rm(data_year)
-    } else {
-      create_list[[y]]<-NULL
     }
-    }
-  
-  #Rename de list
-  assign(name_list, create_list, envir = .GlobalEnv)
-  
-}
+    create_list[[y]] <- data_year
+  }
 
+  assign(name_list, create_list, envir = .GlobalEnv)
+
+  if (length(missing_months) > 0) {
+    message("Meses no disponibles: ", paste(missing_months, collapse = ", "))
+  }
+}
